@@ -1,4 +1,4 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# Ionic Pizza by Surya Elroh
 
 ## How to use this template
 
