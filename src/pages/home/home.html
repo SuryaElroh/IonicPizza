@@ -3,16 +3,33 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Ionic Pizza</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <h3 text-center class="homeTitle">Bienvenue dans le monde des Pizzas</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-card *ngFor="let pizza of pizzas">
+    <img [src]="pizza.picture"/>
+    <ion-card-content>
+      <ion-card-title>
+        <div>{{ pizza.name }} <b>{{ pizza.price }}</b></div>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+      </ion-card-title>
+      <p>
+        {{ pizza.desc }}
+      </p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small [navPush]="pizzaPage" [navParams]="pizza">
+          <ion-icon name="more"></ion-icon>
+          <div>Plus d'infos</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
 </ion-content>

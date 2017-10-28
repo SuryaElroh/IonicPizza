@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Details de la pizza</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img [src]="pizza.picture"/>
+  </ion-card>
+
+  <p class="pizzaName">{{ pizza.name }}</p>
+
+  <p class="pizzaSection">Description</p>
+  <p class="pizzaInfo">{{ pizza.desc }}</p>
+</ion-content>
