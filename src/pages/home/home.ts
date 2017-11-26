@@ -23,8 +23,4 @@ export class HomePage {
       this.pizzas = data;
     });
   }
-
-  viewDetails(name){
-  //  this.navCtrl.push(DetailsPage);
-  }
 }

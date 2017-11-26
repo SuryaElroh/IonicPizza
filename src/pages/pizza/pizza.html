@@ -3,17 +3,37 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Details de la pizza</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="cart()">
+        <ion-icon name="cart"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-card>
-    <img [src]="pizza.picture"/>
+    <ion-card-content>
+      <!--<img [src]="pizza.picture"/>-->
+      <ion-card-title>
+        <p class="pizzaName">{{ pizza.name }}</p>
+      </ion-card-title>
+      <p class="pizzaSection">Description</p>
+      <p class="pizzaInfo">{{ pizza.desc }}</p>
+
+      <p class="pizzaSection">Ingrédients</p>
+
+      <p *ngFor="let ingredient of ingredients" class="pizzaInfo">{{ ingredient }}</p>
+
+      <p class="pizzaSection">Price</p>
+      <p class="pizzaInfo">{{ pizza.price }}</p>
+    </ion-card-content>
   </ion-card>
 
-  <p class="pizzaName">{{ pizza.name }}</p>
+  <p class="pizzaName"> Pizza {{ id }}</p>
 
-  <p class="pizzaSection">Description</p>
-  <p class="pizzaInfo">{{ pizza.desc }}</p>
+
+
+
+
 </ion-content>

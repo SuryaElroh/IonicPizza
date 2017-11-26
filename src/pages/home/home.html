@@ -3,18 +3,22 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Ionic Pizza</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="cart()">
+        <ion-icon name="cart"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3 text-center class="homeTitle">Bienvenue dans le monde des Pizzas</h3>
+  <h3 text-center class="homeTitle">Bienvenue sur VegPizzas</h3>
 
   <ion-card *ngFor="let pizza of pizzas">
-    <img [src]="pizza.picture"/>
     <ion-card-content>
+      <img [src]="pizza.picture"/>
       <ion-card-title>
-        <div>{{ pizza.name }} <b>{{ pizza.price }}</b></div>
+        <div>{{ pizza.name }} <b>{{ pizza.price }} €</b></div>
 
       </ion-card-title>
       <p>
@@ -24,9 +28,15 @@
 
     <ion-row>
       <ion-col>
-        <button ion-button icon-left clear small [navPush]="pizzaPage" [navParams]="pizza">
+        <button ion-button icon-left clear small [navPush]="pizzaPage" [navParams]="pizza.id">
           <ion-icon name="more"></ion-icon>
           <div>Plus d'infos</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small [navPush]="cartPage" [navParams]="pizza">
+          <ion-icon name="cart"></ion-icon>
+          <div>Ajouter au panier</div>
         </button>
       </ion-col>
     </ion-row>

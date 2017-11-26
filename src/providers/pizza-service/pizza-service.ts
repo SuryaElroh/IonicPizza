@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
-
+import { Pizza } from '../../models/pizza';
 /*
   Generated class for the PizzaServiceProvider provider.
 
@@ -12,23 +12,30 @@ import 'rxjs/add/operator/map';
 export class PizzaService {
 
   data : any;
-  private readonly url = "http://10.13.2.167:8080/pizza";
+  private readonly url = "https://pizza-project-cloned-suryae.c9users.io/pizzas/";
 
   constructor(public http: HttpClient) {
     console.log('Hello PizzaService Provider');
   }
 
   getAllPizzas() {
-    // Si les données ne sont pas déjà chargées
-    return new Promise(resolve => {
-      // We're using Angular HTTP provider to request the data,
-      // Next, we process the data and resolve the promise with the new data.
+    let rt: Array<Pizza> = new Array<Pizza>();
+    return new Promise<Array<Pizza>>(resolve => {
       this.http.get(this.url)
-        .subscribe(data => {
-          // we've got back the raw data, now generate the core schedule data
-          // and save the data for later reference
-          this.data = data;
-          resolve(this.data);
+        .subscribe((data:Array<any>) => {
+          for (let i=0; i < data.length; i++) {
+            rt.push(new Pizza(data[i]['id'], data[i]['name'], data[i]['desc'], data[i]['picture'], data[i]['price']));
+          }
+          resolve(rt);
+        });
+    });
+  }
+
+  getById(id: number) {
+    return new Promise<Pizza>(resolve => {
+      this.http.get(this.url + id)
+        .subscribe((data:Pizza) => {
+          resolve(new Pizza(data['id'], data['name'], data['desc'], data['picture'], data['price'], data['ingredients']))
         });
     });
   }
